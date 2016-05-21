@@ -80,7 +80,7 @@ class ProjectController {
 
         if (project == null) {
             transactionStatus.setRollbackOnly()
-            notFound()
+            throw new RuntimeException("Project not found!")
             return
         }
 
@@ -103,5 +103,9 @@ class ProjectController {
             }
             '*'{ render status: NOT_FOUND }
         }
+    }
+
+    def handleRuntimeException(RuntimeException r){
+        notFound()
     }
 }
