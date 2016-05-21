@@ -19,7 +19,14 @@
             <g:if test="${flash.message}">
             <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <f:display bean="project" />
+
+            <ul class="property-list report">
+                <li>id : ${id}</li>
+                <li>name : ${name}</li>
+                <li>description: ${description}</li>
+                <li>image : ${image}</li>
+                <li>isSample : ${isSample}</li>
+            </ul>
             <g:form resource="${this.project}" method="DELETE">
                 <fieldset class="buttons">
                     <g:link class="edit" action="edit" resource="${this.project}"><g:message code="default.button.edit.label" default="Edit" /></g:link>

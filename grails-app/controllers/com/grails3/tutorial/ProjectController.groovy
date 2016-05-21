@@ -1,5 +1,7 @@
 package com.grails3.tutorial
 
+import grails.converters.JSON
+
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
@@ -10,11 +12,25 @@ class ProjectController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond Project.list(params), model:[projectCount: Project.count()]
+        //render([projectList:Project.list(params), projectCount: Project.count()] as JSON)
+        render view: 'index', model:[projectList:Project.list(params), projectCount: Project.count()]
     }
 
     def show(Project project) {
-        respond project
+//        render([
+//                id         : project.id,
+//                name       : project.name,
+//                description: project.description,
+//                imapge     : project.image,
+//                isSample   : project.isSample
+//        ] as JSON)
+        render (view: 'show', model: [
+                id         : project.id,
+                name       : project.name,
+                description: project.description,
+                imapge     : project.image,
+                isSample   : project.isSample
+        ])
     }
 
     def create() {
