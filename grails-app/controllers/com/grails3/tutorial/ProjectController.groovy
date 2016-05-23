@@ -1,5 +1,7 @@
 package com.grails3.tutorial
 
+import grails.converters.JSON
+
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
@@ -87,6 +89,17 @@ class ProjectController implements ExceptionHandlerTrait {
             }
             '*' { render status: NO_CONTENT }
         }
+    }
+
+    def search(){
+        withForm {
+           // good request
+            render projectService.search(params) as JSON
+        }.invalidToken {
+           // bad request
+            render([error: 'invalid CSRF token'] as JSON)
+        }
+
     }
 
     protected void notFound() {

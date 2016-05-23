@@ -61,6 +61,7 @@ environments {
     }
 }
 
+root.image.url= '/var/images'
 
 grails {
     profile = 'web'

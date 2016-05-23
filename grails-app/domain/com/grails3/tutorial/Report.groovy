@@ -5,6 +5,10 @@ class Report {
     String  body = '{}'
     Project project
 
+    def getMedia() {
+        Media.findAllByReport(this)
+    }
+
     static constraints = {
         name unique: 'project', size: 5..256
         body type: 'text'

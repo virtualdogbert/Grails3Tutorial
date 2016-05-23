@@ -24,5 +24,15 @@
                 <g:paginate total="${projectCount ?: 0}" />
             </div>
         </div>
+
+        <div>
+            <g:form useToken="true" action="search">
+                <label>Name:</label>
+                <g:textField name="name"/><br/>
+                <label>isSample:</label>
+                <g:checkBox name="isSample"/><br/>
+                <g:actionSubmit value="Search"/>
+            </g:form>
+        </div>
     </body>
 </html>
