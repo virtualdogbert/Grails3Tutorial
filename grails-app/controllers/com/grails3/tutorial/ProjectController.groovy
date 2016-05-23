@@ -3,39 +3,37 @@ package com.grails3.tutorial
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
-@Transactional(readOnly = true)
 class ProjectController implements ExceptionHandlerTrait {
+    ProjectService projectService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond Project.list(params), model:[projectCount: Project.count()]
+        render view: 'index', model: projectService.index(max, params)
     }
 
-    def show(Project project) {
-        respond project
+    def show() {
+        respond projectService.show(params.id as Long)
     }
 
     def create() {
-        respond new Project(params)
+        respond projectService.create(params)
     }
 
-    @Transactional
+
     def save(Project project) {
         if (project == null) {
-            transactionStatus.setRollbackOnly()
             notFound()
             return
         }
 
+        projectService.save(project)
+
         if (project.hasErrors()) {
-            transactionStatus.setRollbackOnly()
-            respond project.errors, view:'create'
+            project.discard()
+            respond project.errors, view: 'create'
             return
         }
-
-        project.save flush:true
 
         request.withFormat {
             form multipartForm {
@@ -50,48 +48,44 @@ class ProjectController implements ExceptionHandlerTrait {
         respond project
     }
 
-    @Transactional
     def update(Project project) {
         if (project == null) {
-            transactionStatus.setRollbackOnly()
             notFound()
             return
         }
 
+        projectService.save(project)
+
         if (project.hasErrors()) {
-            transactionStatus.setRollbackOnly()
-            respond project.errors, view:'edit'
+            project.discard()
+            respond project.errors, view: 'edit'
             return
         }
-
-        project.save flush:true
 
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'project.label', default: 'Project'), project.id])
                 redirect project
             }
-            '*'{ respond project, [status: OK] }
+            '*' { respond project, [status: OK] }
         }
     }
 
-    @Transactional
     def delete(Project project) {
 
         if (project == null) {
-            transactionStatus.setRollbackOnly()
             throw new RuntimeException("Project not found!")
             return
         }
 
-        project.delete flush:true
+        projectService.delete(project)
 
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'project.label', default: 'Project'), project.id])
-                redirect action:"index", method:"GET"
+                redirect action: "index", method: "GET"
             }
-            '*'{ render status: NO_CONTENT }
+            '*' { render status: NO_CONTENT }
         }
     }
 
@@ -101,7 +95,7 @@ class ProjectController implements ExceptionHandlerTrait {
                 flash.message = message(code: 'default.not.found.message', args: [message(code: 'project.label', default: 'Project'), params.id])
                 redirect action: "index", method: "GET"
             }
-            '*'{ render status: NOT_FOUND }
+            '*' { render status: NOT_FOUND }
         }
     }
 }
