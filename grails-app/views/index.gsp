@@ -119,5 +119,8 @@
                 </ul>
             </div>
         </div>
+    <form action="/logoff">
+        <input type="submit" value="Logoff">
+    </form>
     </body>
 </html>
