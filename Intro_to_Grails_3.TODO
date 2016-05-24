@@ -1,0 +1,119 @@
+Announcements(5-10min):     
+ ☐ Thank the host     
+ ☐ Jobs(but only from actual people, no recruiters/head hunters)     
+ ☐ Looking for speakers for full talks or lightning talks      
+ ☐ Asking what people would like to see for talks      
+ ☐ Misc(other meetups, conference, etc) 
+
+Intro To Grails 3 or Spring Boot with batteries included:
+History:
+  ☐ Mention(profiles/json views(json marshalers))
+
+"The framework is called Grails. Just Grails. Go to http://grails.org/ and search the site. You won’t see any 'Groovy on' anywhere. Seriously. Check it out. I’ll wait.
+
+I guess some history about what caused all this is in order. Back in 2005 the Grails framework was started after discussions on the Groovy mailing list about the idea of a Groovy-based JVM alternative to Ruby on Rails which was then starting to get a lot of buzz. The original name was 'Groovy on Rails', but only a few months later in March 2006 Graeme sent a note to the mailing list titled 'Groovy on Rails is no more (kind of)' saying that David Heinemeier Hansson had complained about the name, so he was changing it to just 'Grails'."
+
+-http://burtbeckwith.com/blog/?p=1213
+
+Based on what I've heard Spring Boot was some what inspired by Grails, and there was some collaboration, between the Grails, and Spring Boot teams.
+
+In Grails 3 the framework from rebased on top of Spring Boot.
+
+
+
+
+setup:
+ ☐ Installing(sdkman)
+ ☐ Creating an app
+ ☐ IDE
+ ☐ App Layout
+Config:
+  ☐ application.groovy vs Application.groovy
+  ☐ init
+  ☐ resources
+Domains:
+  ☐ Columns
+  ☐ Mappings
+  ☐ validation
+Controllers:
+  ☐ Actions
+  ☐ Exception Handlers
+  ☐ Traits
+Services:
+  ☐ Injecting service/Beans
+  ☐ Gorm usage
+ ☐ GSP
+ ☐ Tasks http://docs.grails.org/latest/guide/async.html
+ ☐ Events
+Plugings:
+  ☐ Spring Security
+  ☐ Enforcer
+Testing:
+  ☐ Enforcer example
+Upgrading:
+  ☐ http://docs.grails.org/3.0.x/guide/upgrading.html
+
+@Slf4j //for classes outside grails-app
+
+To modify the name and where the war is saved
+  war.archiveName = 'YouAPP.war'
+  war.destinationDir = new File('/home/username/warFiles')
+
+@Validateable has been replace with a trait.
+
+Controllers no longer have interceptor closures like beforeInterceptor. Grails 3 has a new Interceptor object
+http://grails.github.io/grails-doc/3.0.x/guide/single.html#interceptors
+
+All view should have a relative path starting at the view folder so specify the full path don't start the path with ..
+
+Resources:
+https://grails.org/
+http://grails.org/doc/latest/
+https://grails.org/plugins.html
+
+Install:
+  http://sdkman.io/
+
+Slack channel to ask questions:
+  https://grails.slack.com
+
+Programing Grails(book most are out of date, but this one does have some good practices in it.):
+  http://shop.oreilly.com/product/0636920024750.do
+
+Grails Diary(news)
+  http://grydeske.net/news
+
+Groovy Podcast:
+  https://www.youtube.com/channel/UCtZDhqr4t18CI89bnMMyXOQ
+  http://groovypodcast.podbean.com/
+
+Videos:
+  OCI:
+    https://www.youtube.com/channel/UCSeCbjNDlfdUyKOPWrmfR9A
+  Springone 2GX:
+    https://www.infoq.com/springone-2gx-2015/
+    http://www.infoq.com/SpringOne-2GX-2014/presentations/
+    http://www.infoq.com/springone-2gx-2013/ 
+   
+  Grails 3.0 M1 Preview:
+    https://www.youtube.com/watch?v=aro3_RZqgtU 
+
+  GR8 EU:
+    https://www.youtube.com/channel/UCJXNOMywewNmau4hzAy4LjA 
+  
+  GR8 USA: 
+    https://www.youtube.com/channel/UC7wUp2KIa1hoMNn0r7JUVEg 
+
+  Older GR8 EU: 
+    https://www.youtube.com/channel/UC-Vs_q9uWBlSx5NsDkxoGAQ 
+
+  Greach:
+    https://www.youtube.com/channel/UCgW66PCJrada2o2_YcvFo-Q 
+
+  Other:
+    http://www.infoq.com/presentations/Transforming-to-Groovy 
+    http://www.infoq.com/presentations/Groovy-for-Java-Programmers 
+
+  My Channel(a bit dated:
+    https://www.youtube.com/user/virtualdogbert 
+
