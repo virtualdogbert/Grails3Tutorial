@@ -1,11 +1,12 @@
 package com.grails3.tutorial
 
+import com.virtualdogbert.ast.Enforce
 import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 
 import static org.springframework.http.HttpStatus.*
 
-@Secured('permitAll')
+@Secured('ROLE_USER')
 class ProjectController implements ExceptionHandlerTrait {
     ProjectService projectService
 
@@ -23,7 +24,7 @@ class ProjectController implements ExceptionHandlerTrait {
         respond projectService.create(params)
     }
 
-
+    @Enforce({hasDomainRole("editor", project)})
     def save(Project project) {
         if (project == null) {
             notFound()
@@ -47,10 +48,12 @@ class ProjectController implements ExceptionHandlerTrait {
         }
     }
 
+    @Enforce({hasDomainRole("editor", project)})
     def edit(Project project) {
         respond project
     }
 
+    @Enforce({hasDomainRole("editor", project)})
     def update(Project project) {
         if (project == null) {
             notFound()
@@ -74,6 +77,7 @@ class ProjectController implements ExceptionHandlerTrait {
         }
     }
 
+    @Enforce({hasDomainRole("owner", project)})
     def delete(Project project) {
 
         if (project == null) {

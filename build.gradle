@@ -63,6 +63,7 @@ dependencies {
     compile "org.hibernate:hibernate-ehcache"
     compile "org.grails.plugins:scaffolding"
     compile 'org.grails.plugins:spring-security-core:3.0.0'
+    compile "org.grails.plugins:enforcer:0.3.1"
 
     runtime "org.grails.plugins:asset-pipeline"
 

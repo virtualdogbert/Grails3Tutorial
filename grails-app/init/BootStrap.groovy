@@ -1,6 +1,7 @@
 import com.grails3.tutorial.Media
 import com.grails3.tutorial.Project
 import com.grails3.tutorial.Report
+import com.grails3Tutorial.security.DomainRole
 import com.grails3Tutorial.security.Role
 import com.grails3Tutorial.security.User
 import com.grails3Tutorial.security.UserRole
@@ -29,8 +30,11 @@ class BootStrap {
         UserRole.create(admin_user, user_role, true)
         UserRole.create(admin_user, admin_role, true)
 
-        println "lsdkjf"
-
+        new DomainRole(domainId: 1, domainName: 'com.grails3.tutorial.Project', role: 'owner', user: user).save(flush: true, failOnError: true)
+        user = new User(username: 'user2', password: 'password').save(flush: true, failOnError: true)
+        UserRole.create(user, user_role, true)
+        new DomainRole(domainId: 1, domainName: 'com.grails3.tutorial.Project', role: 'editor', user: user).save(flush: true, failOnError: true)
+        new User(username: 'user3', password: 'password').save(flush: true, failOnError: true)
 
 
     }
