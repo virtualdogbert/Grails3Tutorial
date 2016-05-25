@@ -11,10 +11,10 @@ The repo is a step by step build up in the branches:
   step_00_grails_create-app
   step_01_settings_yml_to_groovy
   step_02_domain_classes
-  step_03_controller_scaforlding
+  step_03_controller_scaffolding
   step_04_generate_controllers_and_views
   step_05_playing_with_controllers
-  step_06_controler_exception_handling
+  step_06_controller_exception_handling
   step_07_traits
   step_08_generating_services
   step_09_gorm
